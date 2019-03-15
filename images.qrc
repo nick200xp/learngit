@@ -12,5 +12,7 @@
         <file>images/italic.png</file>
         <file>images/underline.png</file>
         <file>images/Exit.png</file>
+        <file>images/Redo.png</file>
+        <file>images/Undo.png</file>
     </qresource>
 </RCC>

@@ -50,11 +50,14 @@ public:
     QAction *saveAs;
     QAction *exit;
 
-    QAction *undoAction; //撤销
-    QAction *redoAction; //恢复
+
+    QAction *undoAction;  //撤销
+    QAction *redoAction;  //恢复
+    /*
     QAction *copy;
     QAction *cut;
     QAction *paste;
+    */
 
     QToolBar *fileToolBar;
     QToolBar *editToolBar;

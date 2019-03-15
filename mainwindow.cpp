@@ -16,12 +16,16 @@ MainWindow::MainWindow(QWidget *parent) :
     createMenu();   //创建菜单
     createToolBar();  //创建工具栏
 
-
+    //文件菜单的动作与槽的连接
     connect(newFile,SIGNAL(triggered()),this,SLOT(NewFile()));
     connect(openFile,SIGNAL(triggered()),this,SLOT(OpenFile()));
     connect(save,SIGNAL(triggered()),this,SLOT(Save()));
     connect(saveAs,SIGNAL(triggered()),this,SLOT(SaveAs()));
     connect(exit,SIGNAL(triggered()),this,SLOT(close()));
+
+    //编辑菜单的动作与槽的连接
+    connect(undoAction,SIGNAL(triggered()),textEdit,SLOT(undo()));
+    connect(redoAction,SIGNAL(triggered()),textEdit,SLOT(redo()));
 
 
 
@@ -61,6 +65,16 @@ void MainWindow::createAction()
     exit->setShortcut(tr("Ctrl+Q"));
     exit->setStatusTip(tr("退出"));
 
+    //恢复
+    redoAction = new QAction(QIcon(":/image/images/Redo.png"),tr("恢复"),this);
+    redoAction->setShortcut(tr("Ctrl+R"));
+    redoAction->setStatusTip(tr("恢复"));
+
+    //撤销
+    undoAction = new QAction(QIcon(":/image/images/Undo.png"),tr("撤销"),this);
+    undoAction->setShortcut(tr("Ctrl+U"));
+    undoAction->setStatusTip(tr("撤销"));
+
 }
 
 
@@ -96,6 +110,8 @@ void MainWindow::createToolBar()
     fileToolBar->addAction(save);
     fileToolBar->addAction(exit);
 
+    //编辑
+    editToolBar = addToolBar(tr("编辑(&E)"));
     editToolBar->addAction(undoAction);
     editToolBar->addAction(redoAction);
     editToolBar->addSeparator();
